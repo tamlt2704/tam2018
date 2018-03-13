@@ -1,4 +1,5 @@
-var list_service_no = [ 
+$(document).ready(function(){
+    var list_service_no = [ 
 			'BRT 01', '99', '98', '97', '96', '95', '94', '93', '92', '91', '90', '09', '8B', '8A', '89', '88', '87',
 			'86CT', '86', '85', '84', '80', '78', '76', '75', '74', '72', '71', '70B', '70A', '07', '6E', '6D', '6C',
 			'6B', '6A', '65', '64', '63', '62', '61', '60B', '60A', '59', '58', '57', '56B', '56A', '55B', '55A', '54',
@@ -8,10 +9,13 @@ var list_service_no = [
 			'12', '11', '10B', '10A', '108', '107', '106', '105', '104', '103', '102', '101', '100', '04', '02', '01'
 			];
 
-$(document).ready(function(){
-	    $("p").click(function(){
-		            $(this).hide();
-		        });
+    var bus_service_li = $('#bus-service-li');
+    $.each(list_service_no, function(i) {
+        var li = $('<li/>')
+            .addClass('ui-menu-item')
+            .text(list_service_no[i])
+            .appendTo(bus_service_li);
+    });
 });
 
 
