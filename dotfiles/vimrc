@@ -11,8 +11,8 @@ call vundle#begin()
 
 
 Plugin 'gmarik/Vundle.vim'
-Bundle 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mattn/emmet-vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 call vundle#end()            " required
@@ -27,23 +27,6 @@ filetype plugin indent on    " required
 ################################################################################
 # basic setup
 ################################################################################
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
-
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-
-" flagging unecessary white space
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
 " encoding
 set encoding=utf-8
 
