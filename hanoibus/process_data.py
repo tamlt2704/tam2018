@@ -39,7 +39,7 @@ def process_bus_route():
 
 
 # def process_bus_info():
-
+d = {}
 for fn in os.listdir('data/raw_data'):
     if fn.startswith('fleed_'):
         try:
@@ -48,6 +48,9 @@ for fn in os.listdir('data/raw_data'):
                     js = json.loads(line)
                     js = json.loads(js)
 
-                    print js['dt']['Data'][0]['Name']
+                    title = js['dt']['Data'][0]['Name']
+                    bus_service_no = title.split('-')[0].strip()
+                    print '"' + bus_service_no +'": "' + '-'.join([x.strip() for x in title.split('-')[1:]]) + '",'
         except:
             pass
+
