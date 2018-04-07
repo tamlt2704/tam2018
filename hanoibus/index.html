@@ -9,16 +9,16 @@
     <!--<link rel="stylesheet" href="styles.css">-->
     <style>
       .ul {
-	    text-decoration: none;
-            list-style-type: none;
-      padding: 0px;
+	padding: 0;
+	margin: 0;
 	}
       .li {
           list-style: none;
           width: 300px;
-      padding: 0px;
+	  padding: 0;
       }
       .ui-menu-item {
+	  padding: 0;
         text-decoration: none;
 	border-bottom: 1px solid #ededed;
 	list-style-type: none;
@@ -80,6 +80,7 @@
 		.appendTo(bus_service_li);
 	});
 
+        $("#bus-service-li").css({padding: 0});
         $("#myInput").on("keyup", function() {
 	    var input, filter, ul, li, a, i;
 	    input = document.getElementById("myInput");
