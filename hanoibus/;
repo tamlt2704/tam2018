@@ -21,7 +21,7 @@
 
 <body>
   <div id="map" style='z-index:0; float: left;'></div>
-    <div id="side-menu" style='position: absolute; top: 0px; right: 0px; width: 200px; z-index: 2; background-color: white; min-height: 100%;'>
+    <div id="side-menu" style='position: absolute; top: 0px; right: 0px; width: 200px; z-index: 2; background-color: white; min-height: 800px'>
 	<input type='button' style="width: 200px;" id='change_route_btn'> </input> <br>
 	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search bus/station name ..." title="Type in a name"> <br>
 	<li id='bus-service-li'> </li>
@@ -88,8 +88,7 @@
 		    bus_route_marker[i].removeFrom(map);
 		}
 	        bus_route_marker.length = 0;
-                var n = Object.keys(data['Lat']).length;
-		for (var i = 0; i < n; i++) {
+		for (var i = 0; i < Object.keys(data['Lat']).length; i++) {
 		    var lat = data['Lat'][i];
 		    var lng = data['Lng'][i];
 		    var title = '<strong>' + data['Name'][i] + '</strong><br> <b>FleetOver:</b>' + data['FleetOver'][i];
@@ -97,7 +96,6 @@
                     marker.options.icon.options.iconSize=[20, 20];
 		    bus_route_marker.push(marker);
 		}
-	        map.setView(new L.LatLng(data['Lat'][n/2], data['Lng'][n/2]), 13);
 	    });
 	};
 
