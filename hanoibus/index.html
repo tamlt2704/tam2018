@@ -4,10 +4,162 @@
 	<meta charset="UTF-8">
 	<title> Hanoi Bus </title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <style>
+      .ul {
+	padding: 0;
+	margin: 0;
+	}
+      .li {
+          list-style: none;
+          width: 300px;
+	  padding: 0;
+      }
+      .ui-menu-item {
+	  padding: 0;
+        text-decoration: none;
+	border-bottom: 1px solid #ededed;
+	list-style-type: none;
+       }
+      .body {
+      clear-both;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      }
+      .cls{
+      clear: both;
+      }
+    </style> 
 </head>
+
 <body>
-    <ul id="bus-service-li"></ul>
+  <div id="map" style='z-index:0; float: left;'></div>
+    <div id="side-menu" style='position: absolute; top: 0px; right: 0px; width: 300px; z-index: 2; background-color: white; min-height: 100%;'>
+	<div>
+	    <input type='button' style="width: 300px;" id='change_route_btn'> </input> <br>
+	    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search bus/station name ..." title="Type in a name" style="width: 300px;"> <br>
+	    <ul id='bus-service-li'> </ul>
+	</div>
+    </div>
+    <div class="cls"></div>
 </body>
-<script src="hanoibus.js"></script>
+<!-- <script src="hanoibus.js"></script> -->
+
+<script type="text/javascript">
+
+    var current_code = '01';
+    var current_direction = 1;
+    var map = L.map('map').setView([21.028511, 105.804817], 13);
+    var layer1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+    var geo_route_polyline = null;
+    var bus_route_marker = [];
+
+    var list_service_no = [ 
+			'BRT 01', '99', '98', '97', '96', '95', '94', '93', '92', '91', '90', '09', '8B', '8A', '89', '88', '87',
+			'86CT', '86', '85', '84', '80', '78', '76', '75', '74', '72', '71', '70B', '70A', '07', '6E', '6D', '6C',
+			'6B', '6A', '65', '64', '63', '62', '61', '60B', '60A', '59', '58', '57', '56B', '56A', '55B', '55A', '54',
+			'53B', '53A', '52B', '52A', '51', '50', '49', '48', '47B', '47', '46', '45', '44', '43', '42', '41', '40',
+			'3B', '3A', '39', '38', '37', '36', '35B', '35A', '34', '33', '32', '31', '30', '29', '28', '27', '26', '25',
+			'24', '23', '22C', '22B', '22A', '21B', '21A', '20C', '20B', '20A', '19A', '18', '17', '16', '15', '14', '13',
+			'12', '11', '10B', '10A', '108', '107', '106', '105', '104', '103', '102', '101', '100', '04', '02', '01'
+			];
+    var services = {"06D": "Bến xe Giáp Bát-Tân Dân", "52A": "Công viên Thống nhất-Lệ Chi", "42": "Giáp Bát-Đức Giang", "10A": "Long Biên-Từ Sơn", "88": "Bến xe Mỹ Đình-Hòa Lạc-Xuân Mai", "108": "Bến xe Thường Tín-Minh Tân", "44": "Trần Khánh Dư-BX Mỹ Đình", "09": "Bờ Hồ-Bờ Hồ", "74": "Bến xe Mỹ Đình-Xuân Khanh", "32": "Bến xe Giáp Bát-Nhổn", "63": "Khu công nghiệp Bắc Thăng Long-Tiến Thịnh (Mê Linh)", "60B": "Bến xe Nước Ngầm-BV Bệnh nhiệt đới TƯ (CS2)", "51": "Trần Khánh Dư-Công viên Cầu Giấy", "14": "Bờ Hồ-Cổ Nhuế", "65": "Thụy Lâm (Đông Anh)-Long Biên (ĐCT Long Biên)", "47A": "Long Biên-Bát Tràng", "53A": "Hoàng Quốc Việt-Đông Anh", "107": "Kim Mã-Làng văn hóa du lịch các dân tộc VN", "01": "Bến xe Gia Lâm-Bến xe Yên Nghĩa", "52B": "Công viên Thống Nhất-Đặng Xá", "91": "Bến xe Yên Nghĩa-Kim Bài-Phú Túc", "16": "Bến xe Mỹ Đình-Bến xe Nước Ngầm", "02": "Bác Cổ-Bến xe Yên Nghĩa", "06A": "Bến xe Giáp Bát-Cầu Giẽ", "22A": "Bến xe Gia Lâm-TTTM Big C Thăng Long", "24": "Long Biên-Cầu Giấy", "31": "Bách Khoa-Chèm (ĐH Mỏ)", "06E": "Bến xe Giáp Bát-Phú Túc", "95": "Nam Thăng Long-Xuân Hòa", "43": "Công viên Thống Nhất-Thị trấn Đông Anh", "103": "Bến xe Mỹ Đình-Hương Sơn", "62": "Bến xe Yên Nghĩa-Bến xe Thường Tín", "22B": "Khu đô thị Kiến Hưng-Bến xe Mỹ Đình", "15": "Bến xe Gia Lâm-Phố Nỉ", "41": "Nghi Tàm-BX Giáp Bát", "25": "BV Nhiệt đới TW Cơ sở 2-Bến xe Giáp Bát", "86CT": "Ga Hà Nội-Sân Bay Nội Bài", "20C": "Nhổn-Võng Xuyên", "40": "Công viên Thống Nhất-Văn Lâm", "39": "Công viên Nghĩa Đô-Bệnh viện Nội tiết TW", "53A": "Hoàng Quốc Việt-Đông Anh", "20B": "Cầu Giấy-Bến xe Sơn Tây", "85": "Công viên Nghĩa Đô-Khu đô thị Văn Phú", "61": "Vân Hà (Đông Anh)-CV Cầu Giấy", "60A": "KĐT Pháp Vân, Tứ Hiệp-Công Viên Nước Hồ Tây", "102": "Bến xe Yên Nghĩa-Vân Đình", "99": "Kim Mã-Bệnh viện Nội Tiết TW Cơ sở 2", "45": "Time City-Bến xe Nam Thăng Long", "56B": "KĐT mới Sóc Sơn-Xuân Giang-Bắc Phú-KĐT mới Sóc Sơn", "89": "Bến xe Yên Nghĩa-Thạch Thất-Bến xe Sơn Tây", "57": "Nam Thăng Long-Khu công nghiệp Phú Nghĩa", "53B": "Bến xe Mỹ Đình-Khu công nghiệp Quang Minh", "22C": "Bến xe Giáp Bát-Khu đô thị Dương Nội", "90": "BX Kim Mã-Cầu Nhật Tân-Sân bay Nội Bài", "93": "Nam Thăng Long-Bắc Sơn (Sóc Sơn)", "64": "KCN Bắc Thăng Long-Phố Nỉ-TTTM Bình An", "29": "BX Giáp Bát-Tân Lập", "106": "KĐT Mỗ Lao-TTTM Aeol Mall Long Biên", "86": "Ga Hà Nội-Sân bay Nội Bài", "94": "Bến xe Giáp Bát-Kim Bài", "05": "KĐT Linh Đàm-Phú Diễn", "27": "Bến xe Yên Nghĩa-Bến xe Nam Thăng Long", "104": "Mỹ Đình-Bắc Linh Đàm", "04": "Long Biên-Bến xe Nước Ngầm", "56A": "Bến xe Nam Thăng Long-Núi Đôi", "08A": "Long Biên-Đông Mỹ", "11": "Công viên Thống Nhất-Học Viện Nông Nghiệp", "08BCT": "Long Biên-Vạn Phúc", "26": "Mai Động-SVĐ Quốc gia", "37": "Bến xe Giáp Bát-Chương Mỹ", "13": "CV nước Hồ Tây-Cổ Nhuế (HVCS)", "84": "Khu đô thị Mỹ Đình-Khu đô thị Linh Đàm", "23": "Nguyễn Công Trứ-Nguyễn Công Trứ", "105": "Đô Nghĩa-Cầu Giấy", "55B": "TTTM Aeon Mall-Cầu Giấy", "36CT": "Yên Phụ-Khu đô thị Linh Đàm", "34": "Bến xe Mỹ Đình-Bến xe Gia Lâm", "36": "Yên Phụ-Khu đô thị Linh Đàm", "03B": "Bến xe Nước Ngầm-Vincom-Phúc Lợi", "96": "Công viên Nghĩa Đô-Đông Anh", "100": "Long Biên-Khu đô thị Đặng Xá", "12": "Công viên Nghĩa Đô-Đại Áng", "20A": "Cầu Giấy-Bến xe Phùng", "46": "Bến xe Mỹ Đình-Thị trấn Đông Anh", "50": "Long Biên-SVĐ Quốc Gia", "49": "Trần Khánh Dư-KĐT Mỹ Đình II", "30": "Mai Động-Bến xe Mỹ Đình", "06B": "Bến xe Giáp Bát-Hồng Vân", "54": "Long Biên-Bắc Ninh", "17": "Long Biên-Nội Bài", "38": "BX Nam Thăng Long-Mai Động", "92": "Nhổn-Sơn Tây-Tây Đằng", "87": "Bến xe Mỹ Đình-Quốc Oai-Xuân Mai", "10B": "Long Biên-Trung Mầu", "21B": "Khu đô thị Pháp Vân-Bến xe Mỹ Đình", "59": "TT Đông Anh-Học viện Nông nghiệp Việt Nam", "98": "Yên Phụ-Gia Thụy-Aeol Mall Long Biên", "101": "Bến xe Giáp Bát-Vân Đình", "48": "TTTM Savico Long Biên-Bến xe Nước Ngầm", "07": "Cầu Giấy-Nội Bài", "18": "ĐH Kinh tế QD-ĐH Kinh tế QD", "72": "Bến xe Yên Nghĩa-Xuân Mai", "97": "Hoài Đức-Công viên Nghĩa Đô", "35A": "Trần Khánh Dư-Nam Thăng Long", "58": "Long Biên-Thạch Đà", "33": "BX Yên Nghĩa-Xuân Đỉnh", "28": "BX Giáp Bát-ĐH Mỏ", "47B": "Đại học Kinh tế Quốc dân-Kiêu Kỵ", "21A": "Bến xe Giáp Bát-Bến xe Yên Nghĩa", "35B": "Nam Thăng Long-Thanh Lâm"}
+
+    $(document).ready(function(){
+
+	var bus_service_li = $('#bus-service-li');
+	<!-- $.each(list_service_no, function(i) { -->
+	$.each(services, function(i) {
+	    var li = $('<li/>')
+		.addClass('ui-menu-item')
+		.text(i + ' - ' + services[i])
+	        .attr("id", i)
+		.appendTo(bus_service_li);
+	});
+
+        $("#bus-service-li").css({padding: 0});
+        $("#myInput").on("keyup", function() {
+	    var input, filter, ul, li, a, i;
+	    input = document.getElementById("myInput");
+	    filter = input.value.toUpperCase();
+	    ul = document.getElementById("bus-service-li");
+	    li = ul.getElementsByTagName("li");
+	    for (i = 0; i < li.length; i++) {
+		a = li[i]<!-- .getElementsByTagName("a")[0]; -->
+		if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		    li[i].style.display = "";
+		} else {
+		    li[i].style.display = "none";
+		}
+	    }
+        });
+
+	$(window).on("resize", function() {
+	    <!-- $("#map").height($(window).height()).width($(window).width()); -->
+	    $("#map").height($(window).height()).width($(window).width());
+	    map.invalidateSize();
+	}).trigger("resize");
+	
+	layer1.addTo(map);
+	var update_bus_stopcode = function() {
+	    $.getJSON( 'static/route_' + current_code + '_' + (current_direction+1) + '.json', function( data ) {
+		for (var i = 0; i < bus_route_marker.length; i ++) {
+		    bus_route_marker[i].removeFrom(map);
+		}
+	        bus_route_marker.length = 0;
+                var n = Object.keys(data['Lat']).length;
+		for (var i = 0; i < n; i++) {
+		    var lat = data['Lat'][i];
+		    var lng = data['Lng'][i];
+		    var title = '<strong>' + data['Name'][i] + '</strong><br> <b>FleetOver:</b>' + data['FleetOver'][i];
+		    var marker = L.marker([lat, lng]).addTo(map).bindPopup(title);
+		    bus_route_marker.push(marker);
+		}
+	        map.setView(new L.LatLng(data['Lat'][n/2], data['Lng'][n/2]), 13);
+	    });
+	};
+
+	var change_route = function(file_path) {
+	    $.getJSON( file_path, function( data ) {
+		var pointList = [];
+		for (var i = 0; i < Object.keys(data['Lat']).length; i++) {
+		    var lat = data['Lat'][i];
+		    var lng = data['Lng'][i];
+		    var p = new L.LatLng(lat, lng);
+		    pointList.push(p);
+		}
+		if (pointList.length > 0) {
+		    if (geo_route_polyline != null) {
+			map.removeLayer(geo_route_polyline);
+		    }
+		    geo_route_polyline = new L.Polyline(pointList, {
+				color: 'blue',
+				weight: 5,
+				opacity: 0.5,
+				smoothFactor: 1
+			    }).addTo(map);
+		}
+	    });
+	};
+
+	$('#change_route_btn').click(function(){
+	    current_direction = 1 - current_direction;
+	    filename = 'static/geo_' + current_code + '_' + (current_direction+1) + '.json';
+	    change_route(filename);
+	    $('#change_route_btn').attr('value', 'bus: ' + current_code + ', direction :' + (current_direction+1));
+	    update_bus_stopcode();
+	});
+	
+	$('.ui-menu-item').click(function(){
+	    current_code = $(this).attr('id');
+	    filename = 'static/geo_' + current_code + '_' + (current_direction+1) + '.json';
+	    change_route(filename);
+	    $('#change_route_btn').attr('value', 'bus: ' + current_code + ', direction :' + (current_direction+1));
+	    update_bus_stopcode();
+	});
+    });
+</script>
 </html>
