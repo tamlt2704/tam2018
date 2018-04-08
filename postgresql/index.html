@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-04-08 Sun 16:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style type="text/css">.example {background-color: #eff0f1; color: #ff0000;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgef5c67a">1. Download sample database</a></li>
+<li><a href="#org86e550e">2. Load into postgresql server</a>
+<ul>
+<li><a href="#org33d718d">2.1. create database</a></li>
+<li><a href="#orgf2fdb70">2.2. import database to server</a></li>
+</ul>
+</li>
+<li><a href="#org3527ce7">3. Querying data</a>
+<ul>
+<li><a href="#org622b738">3.1. Select</a>
+<ul>
+<li><a href="#org99498c9">3.1.1. Query all rows and colums from <b>customer</b> table</a></li>
+<li><a href="#org958d737">3.1.2. Select firstname and lastname from <b>customer</b> table</a></li>
+<li><a href="#orge0306e9">3.1.3. <span class="todo TODO">TODO</span> insert result image here</a></li>
+</ul>
+</li>
+<li><a href="#org5367518">3.2. Order by</a>
+<ul>
+<li><a href="#org6f7e150">3.2.1. Query customer and sort the firstname in ascending order</a></li>
+<li><a href="#orgcc560ab">3.2.2. <span class="todo TODO">TODO</span> insert image here</a></li>
+</ul>
+</li>
+<li><a href="#orgc81145b">3.3. Select Distinct</a>
+<ul>
+<li><a href="#orgdab6999">3.3.1. Create new table</a></li>
+<li><a href="#orgb193d6e">3.3.2. Insert some data</a></li>
+<li><a href="#orgb7b7c17">3.3.3. Select data from <b>t1</b></a></li>
+<li><a href="#org01cd2d4">3.3.4. Select distinct <i>bcolor</i> from <b>t1</b> and order by <i>bcolor</i></a></li>
+<li><a href="#org8452583">3.3.5. Select distinct on multiple colums</a></li>
+<li><a href="#org7cb69c4">3.3.6. Select distinct bcolor, fcolor from <b>t1</b> and for each group of duplicates, keep the first row.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org3d27c39">4. Filtering data</a>
+<ul>
+<li><a href="#org104fd98">4.1. Where</a>
+<ul>
+<li><a href="#org2f90441">4.1.1. get all customers whose first names are 'Jamie'</a></li>
+<li><a href="#org9f46418">4.1.2. Select the customer whose first name is 'Jamie' and last names is  'Rice'</a></li>
+<li><a href="#orged54ae8">4.1.3. find out who paid the rental with amount is either less than 1USD or greater than 8USD</a></li>
+</ul>
+</li>
+<li><a href="#orgf0ceba9">4.2. Limit</a>
+<ul>
+<li><a href="#orgb4cdf48">4.2.1. Get the first 5 films ordered by film<sub>id</sub>, you use the following query:</a></li>
+<li><a href="#orgd2d1357">4.2.2. Retrieve 4 films starting from the third one ordered by film<sub>id</sub></a></li>
+<li><a href="#org05a2725">4.2.3. 10 most expensive films</a></li>
+</ul>
+</li>
+<li><a href="#org6873ed9">4.3. Fetch</a>
+<ul>
+<li><a href="#org83c1524">4.3.1. Get the first row of the film sorted by title</a></li>
+<li><a href="#org920fa2c">4.3.2. The first five films sorted by the title</a></li>
+</ul>
+</li>
+<li><a href="#org888d41f">4.4. In</a></li>
+<li><a href="#orge382833">4.5. Between</a></li>
+<li><a href="#orgff6583d">4.6. Like</a></li>
+</ul>
+</li>
+<li><a href="#orgac5dc74">5. Joining Multiple table</a>
+<ul>
+<li><a href="#org618d5eb">5.1. Inner joing</a></li>
+<li><a href="#org7b9940d">5.2. Left join</a></li>
+<li><a href="#orgb89296e">5.3. Self join</a></li>
+<li><a href="#orga667621">5.4. Full Outer join</a></li>
+<li><a href="#orge3dcddf">5.5. Cross join</a></li>
+<li><a href="#org0e18f54">5.6. Natural join</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgef5c67a" class="outline-2">
+<h2 id="orgef5c67a"><span class="section-number-2">1</span> Download sample database</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-bash">curl http://www.postgresqltutorial.com/wp-content/uploads/2017/10/dvdrental.zip --output dvdrental.zip
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org86e550e" class="outline-2">
+<h2 id="org86e550e"><span class="section-number-2">2</span> Load into postgresql server</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org33d718d" class="outline-3">
+<h3 id="org33d718d"><span class="section-number-3">2.1</span> create database</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-bash">su - postgres
+unzip dvdrental.zip
+createdb dvdrental
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf2fdb70" class="outline-3">
+<h3 id="orgf2fdb70"><span class="section-number-3">2.2</span> import database to server</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-bash">pg_restore -U postgres -d dvdrental dvdrental.zip --password
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3527ce7" class="outline-2">
+<h2 id="org3527ce7"><span class="section-number-2">3</span> Querying data</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org622b738" class="outline-3">
+<h3 id="org622b738"><span class="section-number-3">3.1</span> Select</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org99498c9" class="outline-4">
+<h4 id="org99498c9"><span class="section-number-4">3.1.1</span> Query all rows and colums from <b>customer</b> table</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> 
+ * 
+<span style="color: #fff59d;">FROM</span> 
+ customer;
+</pre>
+</div>
+
+<div id="org9df53ac" class="figure">
+<p><img src="./images/select_all_customer.PNG" alt="select_all_customer.PNG" width="80%" />
+</p>
+<p><span class="figure-number">Figure 1: </span>select all rows and columns from <b>customer</b></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org958d737" class="outline-4">
+<h4 id="org958d737"><span class="section-number-4">3.1.2</span> Select firstname and lastname from <b>customer</b> table</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> 
+first_name, last_name 
+<span style="color: #fff59d;">FROM</span> 
+customer;
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orge0306e9" class="outline-4">
+<h4 id="orge0306e9"><span class="section-number-4">3.1.3</span> <span class="todo TODO">TODO</span> insert result image here</h4>
+</div>
+</div>
+
+<div id="outline-container-org5367518" class="outline-3">
+<h3 id="org5367518"><span class="section-number-3">3.2</span> Order by</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-org6f7e150" class="outline-4">
+<h4 id="org6f7e150"><span class="section-number-4">3.2.1</span> Query customer and sort the firstname in ascending order</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> 
+    first_name,
+    last_name
+<span style="color: #fff59d;">FROM</span> 
+    customer
+<span style="color: #fff59d;">ORDER</span> <span style="color: #fff59d;">BY</span> 
+    first_name <span style="color: #fff59d;">ASC</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcc560ab" class="outline-4">
+<h4 id="orgcc560ab"><span class="section-number-4">3.2.2</span> <span class="todo TODO">TODO</span> insert image here</h4>
+</div>
+</div>
+
+
+<div id="outline-container-orgc81145b" class="outline-3">
+<h3 id="orgc81145b"><span class="section-number-3">3.3</span> Select Distinct</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-orgdab6999" class="outline-4">
+<h4 id="orgdab6999"><span class="section-number-4">3.3.1</span> Create new table</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">CREATE</span> <span style="color: #fff59d;">TABLE</span> <span style="color: #84ffff;">t1</span> (
+id serial <span style="color: #fff59d;">NOT</span> <span style="color: #fff59d;">NULL</span> <span style="color: #fff59d;">PRIMARY</span> <span style="color: #fff59d;">KEY</span>,
+bcolor <span style="color: #84ffff;">VARCHAR</span>,
+fcolor <span style="color: #84ffff;">VARCHAR</span>
+);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb193d6e" class="outline-4">
+<h4 id="orgb193d6e"><span class="section-number-4">3.3.2</span> Insert some data</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">INSERT</span> <span style="color: #fff59d;">INTO</span> t1 (bcolor, fcolor)
+<span style="color: #fff59d;">VALUES</span>
+ (<span style="color: #9ccc65;">'red'</span>, <span style="color: #9ccc65;">'red'</span>),
+ (<span style="color: #9ccc65;">'red'</span>, <span style="color: #9ccc65;">'red'</span>),
+ (<span style="color: #9ccc65;">'red'</span>, <span style="color: #fff59d;">NULL</span>),
+ (<span style="color: #fff59d;">NULL</span>, <span style="color: #9ccc65;">'red'</span>),
+ (<span style="color: #9ccc65;">'red'</span>, <span style="color: #9ccc65;">'green'</span>),
+ (<span style="color: #9ccc65;">'red'</span>, <span style="color: #9ccc65;">'blue'</span>),
+ (<span style="color: #9ccc65;">'green'</span>, <span style="color: #9ccc65;">'red'</span>),
+ (<span style="color: #9ccc65;">'green'</span>, <span style="color: #9ccc65;">'blue'</span>),
+ (<span style="color: #9ccc65;">'green'</span>, <span style="color: #9ccc65;">'green'</span>),
+ (<span style="color: #9ccc65;">'blue'</span>, <span style="color: #9ccc65;">'red'</span>),
+ (<span style="color: #9ccc65;">'blue'</span>, <span style="color: #9ccc65;">'green'</span>),
+ (<span style="color: #9ccc65;">'blue'</span>, <span style="color: #9ccc65;">'blue'</span>);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb7b7c17" class="outline-4">
+<h4 id="orgb7b7c17"><span class="section-number-4">3.3.3</span> Select data from <b>t1</b></h4>
+<div class="outline-text-4" id="text-3-3-3">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> 
+id,
+bcolor,
+fcolor
+<span style="color: #fff59d;">FROM</span> 
+t1;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org01cd2d4" class="outline-4">
+<h4 id="org01cd2d4"><span class="section-number-4">3.3.4</span> Select distinct <i>bcolor</i> from <b>t1</b> and order by <i>bcolor</i></h4>
+<div class="outline-text-4" id="text-3-3-4">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> <span style="color: #fff59d;">DISTINCT</span> 
+bcolor 
+<span style="color: #fff59d;">FROM</span> 
+t1
+<span style="color: #fff59d;">ORDER</span> <span style="color: #fff59d;">BY</span>
+bcolor;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8452583" class="outline-4">
+<h4 id="org8452583"><span class="section-number-4">3.3.5</span> Select distinct on multiple colums</h4>
+<div class="outline-text-4" id="text-3-3-5">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> <span style="color: #fff59d;">DISTINCT</span>
+    bcolor, fcolor
+<span style="color: #fff59d;">FROM</span> 
+    t1
+<span style="color: #fff59d;">ORDER</span> <span style="color: #fff59d;">BY</span> 
+    bcolor, fcolor;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7cb69c4" class="outline-4">
+<h4 id="org7cb69c4"><span class="section-number-4">3.3.6</span> Select distinct bcolor, fcolor from <b>t1</b> and for each group of duplicates, keep the first row.</h4>
+<div class="outline-text-4" id="text-3-3-6">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> <span style="color: #fff59d;">DISTINCT</span> <span style="color: #fff59d;">ON</span> 
+    (bcolor) bcolor,
+    fcolor
+<span style="color: #fff59d;">FROM</span> 
+    t1
+<span style="color: #fff59d;">ORDER</span> <span style="color: #fff59d;">BY</span>
+    bcolor, fcolor;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3d27c39" class="outline-2">
+<h2 id="org3d27c39"><span class="section-number-2">4</span> Filtering data</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org104fd98" class="outline-3">
+<h3 id="org104fd98"><span class="section-number-3">4.1</span> Where</h3>
+<div class="outline-text-3" id="text-4-1">
+</div>
+<div id="outline-container-org2f90441" class="outline-4">
+<h4 id="org2f90441"><span class="section-number-4">4.1.1</span> get all customers whose first names are 'Jamie'</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> 
+    last_name, first_name
+<span style="color: #fff59d;">FROM</span>
+    customer
+<span style="color: #fff59d;">WHERE</span> 
+    first_name = <span style="color: #9ccc65;">'Jamie'</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9f46418" class="outline-4">
+<h4 id="org9f46418"><span class="section-number-4">4.1.2</span> Select the customer whose first name is 'Jamie' and last names is  'Rice'</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> 
+    last_name, first_name
+<span style="color: #fff59d;">FROM</span>
+    customer
+<span style="color: #fff59d;">WHERE</span> 
+    first_name = <span style="color: #9ccc65;">'Jamie'</span>;
+    <span style="color: #fff59d;">AND</span> 
+    last_name = <span style="color: #9ccc65;">'Rice'</span>;
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orged54ae8" class="outline-4">
+<h4 id="orged54ae8"><span class="section-number-4">4.1.3</span> find out who paid the rental with amount is either less than 1USD or greater than 8USD</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> 
+    customer_id, amount, payment_date
+<span style="color: #fff59d;">FROM</span> 
+    payment
+<span style="color: #fff59d;">WHERE</span> 
+    amount &lt;=1 <span style="color: #fff59d;">or</span> amount &gt;= 8;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf0ceba9" class="outline-3">
+<h3 id="orgf0ceba9"><span class="section-number-3">4.2</span> Limit</h3>
+<div class="outline-text-3" id="text-4-2">
+</div>
+<div id="outline-container-orgb4cdf48" class="outline-4">
+<h4 id="orgb4cdf48"><span class="section-number-4">4.2.1</span> Get the first 5 films ordered by film<sub>id</sub>, you use the following query:</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span>
+    film_id, title, release_year
+<span style="color: #fff59d;">FROM</span> 
+    film
+<span style="color: #fff59d;">ORDER</span> <span style="color: #fff59d;">BY</span> 
+    film_id
+<span style="color: #fff59d;">LIMIT</span> 5;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd2d1357" class="outline-4">
+<h4 id="orgd2d1357"><span class="section-number-4">4.2.2</span> Retrieve 4 films starting from the third one ordered by film<sub>id</sub></h4>
+<div class="outline-text-4" id="text-4-2-2">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> 
+    film_id, title, release_year
+<span style="color: #fff59d;">FROM</span> 
+    film
+<span style="color: #fff59d;">ORDER</span> <span style="color: #fff59d;">BY</span>
+    film_id
+<span style="color: #fff59d;">LIMIT</span> 4 OFFSET 3;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org05a2725" class="outline-4">
+<h4 id="org05a2725"><span class="section-number-4">4.2.3</span> 10 most expensive films</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span>
+    film_id, title, rental_rate
+<span style="color: #fff59d;">FROM</span> 
+    film
+<span style="color: #fff59d;">ORDER</span> <span style="color: #fff59d;">BY</span>
+    rental_rate <span style="color: #fff59d;">DESC</span>
+<span style="color: #fff59d;">LIMIT</span> 10;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6873ed9" class="outline-3">
+<h3 id="org6873ed9"><span class="section-number-3">4.3</span> Fetch</h3>
+<div class="outline-text-3" id="text-4-3">
+</div>
+<div id="outline-container-org83c1524" class="outline-4">
+<h4 id="org83c1524"><span class="section-number-4">4.3.1</span> Get the first row of the film sorted by title</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span>
+    film_id, title
+<span style="color: #fff59d;">FROM</span> 
+    film
+<span style="color: #fff59d;">ORDER</span> <span style="color: #fff59d;">BY</span> 
+    title
+<span style="color: #fff59d;">FETCH</span> <span style="color: #fff59d;">FIRST</span> <span style="color: #84ffff;">ROW</span> <span style="color: #fff59d;">ONLY</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org920fa2c" class="outline-4">
+<h4 id="org920fa2c"><span class="section-number-4">4.3.2</span> The first five films sorted by the title</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #fff59d;">SELECT</span> 
+film_id, title
+<span style="color: #fff59d;">FROM</span> 
+film
+<span style="color: #fff59d;">ORDER</span> <span style="color: #fff59d;">BY</span> 
+title
+<span style="color: #fff59d;">FETCH</span> <span style="color: #fff59d;">FIRST</span> 5 <span style="color: #84ffff;">ROW</span> <span style="color: #fff59d;">ONLY</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org888d41f" class="outline-3">
+<h3 id="org888d41f"><span class="section-number-3">4.4</span> In</h3>
+</div>
+
+<div id="outline-container-orge382833" class="outline-3">
+<h3 id="orge382833"><span class="section-number-3">4.5</span> Between</h3>
+</div>
+
+<div id="outline-container-orgff6583d" class="outline-3">
+<h3 id="orgff6583d"><span class="section-number-3">4.6</span> Like</h3>
+</div>
+</div>
+
+<div id="outline-container-orgac5dc74" class="outline-2">
+<h2 id="orgac5dc74"><span class="section-number-2">5</span> Joining Multiple table</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org618d5eb" class="outline-3">
+<h3 id="org618d5eb"><span class="section-number-3">5.1</span> Inner joing</h3>
+</div>
+
+<div id="outline-container-org7b9940d" class="outline-3">
+<h3 id="org7b9940d"><span class="section-number-3">5.2</span> Left join</h3>
+</div>
+
+<div id="outline-container-orgb89296e" class="outline-3">
+<h3 id="orgb89296e"><span class="section-number-3">5.3</span> Self join</h3>
+</div>
+
+<div id="outline-container-orga667621" class="outline-3">
+<h3 id="orga667621"><span class="section-number-3">5.4</span> Full Outer join</h3>
+</div>
+
+<div id="outline-container-orge3dcddf" class="outline-3">
+<h3 id="orge3dcddf"><span class="section-number-3">5.5</span> Cross join</h3>
+</div>
+
+<div id="outline-container-org0e18f54" class="outline-3">
+<h3 id="org0e18f54"><span class="section-number-3">5.6</span> Natural join</h3>
+<div class="outline-text-3" id="text-5-6">
+<div class="org-src-container">
+<pre class="src src-sql">
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2018-04-08 Sun 16:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
