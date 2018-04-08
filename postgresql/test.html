@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div>
+	<textarea id="sqlcommands" rows="4" cols="50">
+	</textarea>
+
+	<input id="sqlsubmit" type="button" name="submit"></submit>
+    </div>
+  </body>
+    
+    <script src='js/sql.js'></script>
+    <script>
+	//Create the database
+	var db = new SQL.Database();
+	// Run a query without reading the results
+	db.run("CREATE TABLE test (col1, col2);");
+	// Insert two rows: (1,111) and (2,222)
+	db.run("INSERT INTO test VALUES (?,?), (?,?)", [1,111,2,222]);
+	
+      $(document).ready(function() {
+      $("#sqlsubmit").click(function() {
+	var content = $("#sqlcommands").val();
+	try{
+	    var res = db.exec(content);
+	} catch(err) {
+	alert(err);
+	}
+	for (i = 0; i < res.length; i++) {
+	    rs = res[i];
+	    alert(rs['columns']);
+	    alert(rs['values']);
+	}
+	});
+      });
+    </script>
+</html>
