@@ -15,6 +15,9 @@ settings.configure(
 
 from django.conf.urls import url
 from django.http import HttpResponse
+from django.core.wsgi import get_wsgi_application
+
+application = get_wsgi_application()
 
 def index(request):
 	return HttpResponse('django')
