@@ -7,9 +7,13 @@
 		</title>
 		
 		<link rel="stylesheet" href="{% static 'site.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'bootstrap-theme.min.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
 	</head>
 	
 	<body>
 		{% block content %} {% endblock %}
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
 	</body>
 </html>
