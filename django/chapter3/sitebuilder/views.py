@@ -24,7 +24,7 @@ def get_page_or_404(name):
 def page(request, slug='index'):
 	file_name = '{}.html'.format(slug)
 	page = get_page_or_404(file_name)
-
+	
 	context = {
 		'slug': slug,
 		'page': page
