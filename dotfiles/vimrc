@@ -1,48 +1,85 @@
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" Automatic reloading .vimrc
+autocmd! bufwritepost .vimrc source %
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin manager
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible              " required
-filetype off                  " required
+" Better copy and paste
+set pastetoggle=<F2>
+set clipboard=unnamed
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" make backspace behave like normal
+set bs=2
+
+" rebind <Leader> key
+let mapleader = ","
+
+" easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+" show whitespace
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
+" Color scheme
+" mkdir -p ~/.vim/colors && cd ~/.vim/colors
+" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
+set t_Co=256
+color wombat256mod
+
+" Enable syntax hightlighting
+filetype off
+filetype plugin indent on
+syntax on
+
+" Showing line numbers and lenght
+set number
+set tw=79
+set nowrap
+set fo-=t
+set colorcolumn=80
+highlight ColorColumn ctermbg=233
+
+" Real programmer don't use Tabs but spaces
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set expandtab
 
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" highlight search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
-call vundle#end()            " required
-filetype plugin indent on    " required
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin manager end 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Diable backup and swap files
+se nobackup
+set nowritebackup
+set noswapfile
+
+" Setup pathogen to manage plugins
+" mkdir -p ~/.vim/autoload ~/.vim/bundle
+" " curl -so ~/.vim/autoload/pathogen.vim
+" https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+call pathogen#infect()
+
+" ============================================================================
+" Python IDE Setup
+"
+" ============================================================================
 
 
+" Settings for vim-powerline
+" cd ~/.vim/bundle
+" git clone git://github.com/Lokaltog/vim-powerline.git
+set laststatus=2
 
+" Settings for ctrlp
+" cd ~/.vim/bundle
+" git clone https://github.com/kien/ctrlp.vim.git
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=*/coverage/*
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" basic setup
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" encoding
-set encoding=utf-8
-
-" line numbersing
-set nu
-
-set tabstop=4       " The width of a TAB is set to 4.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 4.
-
-set shiftwidth=4    " Indents will have a width of 4
-
-set softtabstop=4   " Sets the number of columns for a TAB
-
-set expandtab       " Expand TABs to spaces
-################################################################################
-# basic setup
-################################################################################
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> 
